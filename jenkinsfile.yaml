@@ -1,4 +1,12 @@
-node('maven') 
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "flaskapi"
+spec:
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: |- 
+        node('maven') 
         {
            stage('Clone') 
                   {
@@ -11,3 +19,4 @@ node('maven')
                   sh "oc expose svc flaskapi || true"
                   }
         } 
+      type: JenkinsPipeline
